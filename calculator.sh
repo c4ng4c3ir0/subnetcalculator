@@ -1,7 +1,11 @@
 #!/bin/bash
 
-# Pede ao usuário a subnet em CIDR notation
-read -p "Informe a subnet em CIDR notation (ex: 192.168.0.0/24): " subnet
+if [[ -z "$1" ]]; then
+    echo "Informe a subnet em CIDR notation como argumento (ex: 192.168.0.0/24)."
+    exit 1
+fi
+
+subnet=$1
 
 # Calcula o endereço de rede e a máscara a partir da subnet informada
 network=$(echo $subnet | cut -d '/' -f 1)
